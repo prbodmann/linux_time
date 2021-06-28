@@ -180,7 +180,7 @@ int main( int argc, char *argv [])
     fclose(file);
 
 
-
+        clock_t begin = clock();
         for(i=0; i<dim_cpu.space_elem; i=i+1) {
             fv_cpu[i].v = 0;
             fv_cpu[i].x = 0;
@@ -188,7 +188,7 @@ int main( int argc, char *argv [])
             fv_cpu[i].z = 0;
         }
 
-        clock_t begin = clock();
+        clock_t middle2 = clock();
         kernel_cpu(	par_cpu,
                     dim_cpu,
                     box_cpu,
@@ -197,7 +197,7 @@ int main( int argc, char *argv [])
                     fv_cpu);
 
                           clock_t  middle = clock();
-        double time_spent1 = (double)(middle - begin) / CLOCKS_PER_SEC;
+        double time_spent1 = (double)(middle - middle2) / CLOCKS_PER_SEC;
         int flag=0;
         for(i=0; i<dim_cpu.space_elem; i++) {
             int thread_error=0;
@@ -233,7 +233,7 @@ int main( int argc, char *argv [])
                 
         }	
                clock_t end = clock();
-        double time_spent2 = (double)(end - middle) / CLOCKS_PER_SEC;
+        double time_spent2 = (double)(end - begin) / CLOCKS_PER_SEC;
        printf("time: %lf %lf ",time_spent1,time_spent2);
         
         

@@ -148,7 +148,7 @@ int main(int argc, char **argv)
         }
         //printf("end");
         clock_t end = clock();
-        double time_spent2 = (double)(end - middle) / CLOCKS_PER_SEC;
+        double time_spent2 = (double)(end - begin) / CLOCKS_PER_SEC;
     	//########### control_dut ###########
         printf("time: %lf %lf ",time_spent1,time_spent2);
 
